@@ -6,7 +6,7 @@ const resourcedb = require('../models/resource.js');
 //get request
 module.exports.Resource_get=async(req,res,next)=>{
     try{
-        const resource=await Resourcedb.findById(req.pa.id);
+        const resource=await Resourcedb.findById(req.params.id);
         if(!resource){
             return next(createError(400,'Resource not found'));
         }
