@@ -12,11 +12,23 @@ const resourceSchema = new mongoose.Schema({
     description: {
         type: String,
         required: [true, 'Please enter blog description'],
-        maxlength: [500, 'Blog description cannot exceed 500 characters']
+        maxlength: [5000, 'Blog description cannot exceed 500 characters']
+    },
+    photo: {
+        type: String,
+        required: false,
     },
     body: {
         type: String,
         required: [true, 'Please enter blog body']
+    },
+    // username: {
+    //     type: String,
+    //     required: [true, 'Please enter username']
+    // },
+    catagories: {
+        type: String,
+        required: false,
     },
     createdAt: {
         type: Date,
@@ -32,10 +44,8 @@ const resourceSchema = new mongoose.Schema({
 );
 const resourcedb= mongoose.model('resourceSchema',resourceSchema);
 
-module.exports=
-{
-    resourcedb
-}
+module.exports=resourcedb;
+
 // const resourceSchema = new mongoose.Schema({
 //     title: {
 //         type: String,
