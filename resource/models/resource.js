@@ -16,16 +16,17 @@ const resourceSchema = new mongoose.Schema({
     },
     photo: {
         type: String,
+        default: 'no-photo.jpg',
         required: false,
     },
     body: {
         type: String,
         required: [true, 'Please enter blog body']
     },
-    // username: {
-    //     type: String,
-    //     required: [true, 'Please enter username']
-    // },
+    username: {
+        type: String,
+        required: [true, 'Please enter username']
+    },
     catagories: {
         type: String,
         required: false,

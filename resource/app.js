@@ -8,7 +8,7 @@ const app = express();
 const port=process.env.PORT || 3000;
 
 
-const connectdb = require('./db/connectdb.js');  //database connection
+const connectdb = require('./db/connectdb.js'); //database connection
 
 // middleware
 app.use(express.json());
@@ -26,7 +26,7 @@ app.use(cookieParser())
 
 //api routes
 const resourceRouter=require('./routes/resource.js');
-app.use('/',resourceRouter);
+app.use('/resource',resourceRouter);
 
 // error middleware
 app.use((err,req,res,next)=>{
