@@ -5,7 +5,7 @@ require('dotenv').config();  //for .env file (for security purpose)
 
 
 const app = express();
-const port=process.env.PORT || 3000;
+const port=process.env.PORT || 5000;
 
 
 const connectdb = require('./db/connectdb.js'); //database connection
