@@ -1,0 +1,191 @@
+<%- include("../include/admin_navbar.ejs"); -%>
+
+<div class="main_container">
+    <% if(backend_resources.length == 0){ %>
+        <h1>No resources Found</h1>
+    <% } %>
+    <% if(backend_resources.length != 0){ %>
+        <div class="text-primary" style="width: 100%; text-align: center;"><h1>Resource</h1></div>
+    <% backend_resources.forEach(function (resource,index) { %>
+        <div class="card text-white bg-secondary mx-3 my-3" id="<%= resource._id %>" key = "<%= resource._id %>" style="max-width: 20rem;">
+            <div class="card-header"><h4><%= resource.title %></h4></div>
+            <div class="card-body">
+              <!-- <p class="card-text"><b>Date : </b><%= resource.date %></p>
+              <p class="card-text"><b>Duration : </b><%= resource.duration %> Hour</p>
+              <p class="card-text"><b>Venue : </b><%= resource.venue %></p> -->
+              <p class="card-text"><%= resource.markdown %></p>
+              <!-- <form action="/resource" method="post"> -->
+              <button type="button" id="<%= resource._id %>" class="btn btn-primary btn-sm mx-2" onclick ="perticular_resource(this.id)" key = "<%= resource._id %>" >Read more</button>
+              <button type="button" id="<%= resource._id %>" class="btn btn-primary btn-sm mx-2" onclick ="delete_resource(this.id)" key = "<%= resource._id %>" >Delete resource</button>
+              <!-- </form> -->
+            </div>
+        </div>
+    <% }) %>
+    <% } %>
+    
+</div>
+
+<style>
+
+    .main_container{
+        margin: 50px;
+        display : flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+</style>
+
+<script>
+    function perticular_resource(id){
+        console.log(id)
+        window.location.href = "/admin/resource/"+`${id}`;
+    }
+    
+    function delete_resource(id){
+
+        const resource_id = id;
+
+        const data = {
+            resource_id : resource_id
+        }
+
+        fetch(`/admin/delete_resource`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+        },
+            body: JSON.stringify(data),
+        });
+
+        alert("resource deleted Success");
+        const element = document.getElementById(resource_id);
+        element.remove();
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <%- include("../partials/header.ejs"); -%>
+<% if(is_admin && is_member) { %>
+    <%- include("../include/admin_navbar.ejs"); -%>
+<% } else { %> 
+    <%- include("../include/navbar.ejs"); -%>
+<% } %> 
+   <div class="container-fluid home-body home-body-bg"> 
+    <main id="intro-content" class="container my-2">
+        <h1>Welcome To <span id="resourceoblog">resource-O-BLOG!</span>
+        </h1>
+        <% if(is_admin && is_member) { %>
+            <h4>See what people are writing and <a href="/admin/compose">compose</a> your own resources.</h4> 
+        <% } else { %> 
+        <h4>you are not authenticated as admin <a href="/admin">login</a> to share your own experiences, ideas and
+            thoughts.
+        </h4>
+        <% } %> 
+    </main>
+
+   
+        <% new_resource.forEach(function(resource){ %>
+            <div class="card resource-box">
+                <div class="card-body">
+                    <h2 class="card-title resource-title"> <a class="resource-title" href="/resources/<%=resource._id%> "><%= resource.title %></a></h2>
+                    <h6 class="card-subtitle mb-2"> <a href="/profile/<%=resource.authorId%> "> <em><%= "@" + resource.account %></em> </a></h6>
+                        <p class="card-text resource-para"><%= resource.content %></p>
+                        <a class="btn rm-btn" href="/resources/<%=resource._id%> " role="button">Read more</a>
+                    <% if(authenticated) { %>
+                        <form class="like-btn" action="/like" method="resource">
+                            <% if(userLikedresources.includes(resource._id)) { %>
+                                <input type="hidden" name="resourceId" value="<%=resource._id%>">
+                                <button class='btn  btn-xs' type="submit" name="liked" value='false'><i class="fa fa-thumbs-up liked"></i> Liked</button><span>
+                                    <%=resource.likes%> people like this.
+                                </span>
+                                <% } else { %>
+                                    <input type="hidden" name="resourceId" value="<%=resource._id%>">
+                                    <button class='btn  btn-xs' type="submit" name="liked" value='true'><i class="fas fa-thumbs-up"></i>
+                                        Like</button> <span>
+                                        <%= resource.likes%> people liked this.
+                                    </span>
+                                <% } %>
+                        </form>
+                    <% } else { %>
+                        <br><span>
+                            <%= resource.likes%> people liked this.
+                        </span>
+                        <% } %>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+   
+
+
+
+<!-- <%- include("../partials/footer.ejs"); -%> -->
+ -->

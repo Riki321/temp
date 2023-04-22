@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const recourseController = require('../controllers/resourceController');
-const composeController = require('../controllers/composeController');
+// const is_admin=require('../config/auth.js').isAdmin;
 
 
-
-router.get("/:id",recourseController.Resource_get);
+// router.get("/:id",recourseController.Resource_get);
 router.get("/",recourseController.Resource_get_all);
-router.get("/compose",composeController.compose_get);
+// router.get("/compose",is_admin,recourseController.compose_get);
+// router.post("/compose",is_admin,recourseController.compose_post);
 // router.put("/:id",recourseController.Resource_put);
 // router.delete("/",recourseController.Resource_delete);
 module.exports = router;

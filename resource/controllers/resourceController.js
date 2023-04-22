@@ -14,6 +14,34 @@ module.exports.Resource_get_all=async(req,res,next)=>{
             status:'success',
             data:resource
         });
+        // render resource page
+        // res.render('./views/resource.ejs',
+        // {
+        //     resource:resource,
+        //     title:'Resource',
+        //     // layout:'./layouts/main',
+        //     });
+    }catch(err){
+        next(err);
+    }
+}
+module.exports.Resource_get=async(req,res,next)=>{
+    try{
+        const resource=await Resourcedb.findById(req.params.id);
+        if(!resource){
+            return next(createError(400,'Resource not found'));
+        }
+        res.status(200).json({
+            status:'success',
+            data:resource
+        });
+        // render resource page
+        // res.render('./views/resource.ejs',
+        // {
+        //     resource:resource,
+        //     title:'Resource',
+        //     // layout:'./layouts/main',
+        //     });
     }catch(err){
         next(err);
     }
@@ -45,6 +73,20 @@ module.exports.Resource_get_all=async(req,res,next)=>{
 //     }
 // }
 
+// module.exports.Resource_post=async(req,res,next)=>{
+//     try{
+//         const resource=await Resourcedb.create(req.body);
+//         if(!resource){
+//             return next(createError(400,'Resource not created'));
+//         }
+//         res.status(200).json({
+//             status:'success',
+//             data:resource
+//         });
+//     }catch(err){
+//         next(err);
+//     }
+// }
 module.exports.Resource_post=async(req,res,next)=>{
     try{
         const resource=await Resourcedb.create(req.body);
@@ -55,11 +97,14 @@ module.exports.Resource_post=async(req,res,next)=>{
             status:'success',
             data:resource
         });
+        // res.render('./views/resource.ejs',
+        // {
+        //     resource:resource
+        // });
     }catch(err){
         next(err);
     }
 }
-
 
 // // put request
 // module.exports.Resource_put=async(req,res,next)=>{
